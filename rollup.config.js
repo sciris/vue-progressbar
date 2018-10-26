@@ -28,7 +28,10 @@ export default {
             extensions: ['.vue', '.js', '.json']
         }), // tells Rollup how to find date-fns in node_modules
         commonjs(), // converts date-fns to ES modules
-        babel(),
+        babel({
+          exclude: 'node_modules/**',
+          plugins: ["external-helpers"]
+        }),
         production && uglify() // minify, but only in production
     ],
     sourceMap: false
